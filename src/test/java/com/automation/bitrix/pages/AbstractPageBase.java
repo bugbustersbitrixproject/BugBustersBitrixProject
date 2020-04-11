@@ -1,5 +1,6 @@
 package com.automation.bitrix.pages;
 
+import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +30,21 @@ public abstract class AbstractPageBase {
        }
 
 
+    public void navigateToTab(String tabName) {
+        String tabXpath = "//span[@class='feed-add-post-form-link']//span[text()='" + tabName + "']";
+        WebElement tab = driver.findElement(By.xpath(tabXpath));
+        BrowserUtils.waitForPageToLoad(20);
+        if (tabName.equals("File") || tabName.equals("Appreciation") ||
+                tabName.equals("Announcement") || tabName.equals("Workflow")) {
+            WebElement more = driver.findElement(By.xpath("//span[@id='feed-add-post-form-link-text' and contains(text(),'More')]"));
+            more.click();
+            BrowserUtils.wait(3);
+            WebElement subModule=driver.findElement(By.xpath("//span[@class='menu-popup-item-text' and contains(text(),'"+tabName+"')]"));
+            subModule.click();
+        } else {
+            tab.click();
+        }
+    }
 
        public void navigateTo(String moduleName){
 
