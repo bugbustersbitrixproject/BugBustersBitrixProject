@@ -4,6 +4,7 @@ public class Test {
     //Add some changes
     // new line
     //hello gencler Muge
+    //Just trying to have a conflict
 
 
 
