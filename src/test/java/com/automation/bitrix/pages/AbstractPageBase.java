@@ -62,13 +62,24 @@ public abstract class AbstractPageBase {
                      module.click();
               }
 
-
-
-
-
-
-
        }
+    //to  navigate modules under Activity Stream
+    public void navigateToTab(String tabName) {
+        if (tabName.equals("File") || tabName.equals("Appreciation") ||
+                tabName.equals("Announcement") || tabName.equals("Workflow")) {
+            WebElement more = driver.findElement(By.xpath("//span[@id='feed-add-post-form-link-text' and contains(text(),'More')]"));
+            more.click();
+            BrowserUtils.wait(3);
+            WebElement subModule=driver.findElement(By.xpath("//span[@class='menu-popup-item-text' and contains(text(),'"+tabName+"')]"));
+            subModule.click();
+        } else {
+            String tabXpath = "//span[@class='feed-add-post-form-link']//span[text()='" + tabName + "']";
+            WebElement tab = driver.findElement(By.xpath(tabXpath));
 
-
+            tab.click();
+        }
+    }
 }
+
+
+
