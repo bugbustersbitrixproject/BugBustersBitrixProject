@@ -9,9 +9,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class EventTabTest extends AbstractTestBase {
+
+
     @Test(description = "User should be able to click on upload files icon to upload files")
     public void test1(){
-
+test=report.createTest("upload file from computer");
 
        LoginPage login=new LoginPage();
        login.loginAs("help_desk2");
@@ -21,6 +23,7 @@ public class EventTabTest extends AbstractTestBase {
     }
     @Test(description="User should be able to click on upload files icon to upload Bitrix24files")
      public void test2(){
+        test=report.createTest("upload file from Bitrix24");
         LoginPage login=new LoginPage();
         login.loginAs("help_desk2");
         BrowserUtils.wait(4);

@@ -37,9 +37,12 @@ public class EventTab extends AbstractPageBase {
     private WebElement MarketingandAdvertisingFile;
     @FindBy(xpath = "//a[@href='#'][@class='bx-file-dialog-content-link bx-file-dialog-icon bx-file-dialog-icon-file']")
     private List<WebElement> documentsFromBitrix24;
+    @FindBy(xpath = "//a[@href='#'][@class='bx-file-dialog-content-link bx-file-dialog-icon bx-file-dialog-icon-file']")
+    private WebElement fileFromBitrix24;
    //this sales marketing open  Marketing and advertising file
-
-
+////*[@id="bx-file-dialog-content-DiskFileDialog"]/div[3]/div/span[1]/a
+   @FindBy(xpath = "//*[@onclick='javascript:void(0);']")
+   private WebElement filenameFromBitrix24;
     String imageName = "catPicture.jfif";
     String fileName = "file.txt";
 ////this method will usd for uploading file from File yor computer
@@ -84,9 +87,6 @@ public class EventTab extends AbstractPageBase {
         BrowserUtils.wait(3);
         wait.until(ExpectedConditions.elementToBeClickable(selectDocumentFromBitrix24));
         BrowserUtils.wait(3);
-        //his gives some times error because of no file
-        // click which document you want to dowload chose by index
-       // documentsFromBitrix24.get(index).click();
         //click one file
         documentsFromBitrix24.get(0).click();
         wait.until(ExpectedConditions.elementToBeClickable(selectDocumentButton));
@@ -96,11 +96,14 @@ public class EventTab extends AbstractPageBase {
     //this method will use to prove file uploaded FromBitrix24
     }
     public String fileNameFromBitix24(){
-     String actualfileName = documentsFromBitrix24.get(0).getText();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", eventModule);
+     String actualfileName = filenameFromBitrix24.getText();
      return actualfileName;
     }//this method filename from the place we upload
     public String uploodedFileName(){
         //title="Click to insert file"
-        return driver.findElement(By.xpath("//*[@id='disk-edit-attachn513']/td[1]/span[1]/span[1]")).getText();
+        ////*[@title='Click to insert file']
+        return driver.findElement(By.xpath("//*[@title='Click to insert file']")).getText();
     }
 }
