@@ -75,5 +75,6 @@ public abstract class AbstractTestBase {
         }
 
         Driver.closeDriver();
+
     }
 }
