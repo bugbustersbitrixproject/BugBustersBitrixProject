@@ -67,10 +67,10 @@ public abstract class AbstractTestBase {
 
             test.fail(iTestResult.getThrowable());
         } else if (iTestResult.getStatus() == ITestResult.SUCCESS) {
-            String screnshotPath = BrowserUtils.getScreenshot(iTestResult.getName());
+            String screenshotPath = BrowserUtils.getScreenshot(iTestResult.getName());
             test.pass(iTestResult.getName());
             BrowserUtils.wait(4);
-            test.addScreenCaptureFromPath(screnshotPath);
+            test.addScreenCaptureFromPath(screenshotPath);
             BrowserUtils.wait(4);
         }
 
