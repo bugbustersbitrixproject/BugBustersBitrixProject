@@ -37,6 +37,7 @@ public abstract class AbstractPageBase {
 
               WebElement module= driver.findElement(By.xpath(moduleXpath));
 
+              // it is for hidden modules under more
               if(moduleName.equals("Applications") || moduleName.equals("Workflows")){
                      WebElement more=driver.findElement(By.xpath("//span[@class='menu-favorites-more-text']"));
                      more.click();
@@ -48,6 +49,7 @@ public abstract class AbstractPageBase {
               }
 
        }
+
     //to  navigate modules under Activity Stream
     public void navigateToTab(String tabName) {
         if (tabName.equals("File") || tabName.equals("Appreciation") ||
