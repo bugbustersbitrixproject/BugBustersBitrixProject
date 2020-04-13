@@ -1,5 +1,4 @@
 package com.automation.bitrix.pages.activityStream;
-
 import com.automation.bitrix.pages.AbstractPageBase;
 import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.DateTimeUtilities;
