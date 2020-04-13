@@ -18,14 +18,17 @@ public class WorkflowTabPage extends AbstractPageBase {
     @FindBy(xpath = "//*[@id=\"bx-lists-popup\"]/span")
     private WebElement closeSymbol;
 
-    @FindBy(xpath = "//input[@name='USER_PASSWORD']")
-    private WebElement authorization;
-
-    @FindBy(xpath = "(//input[@class='bx-lists-input-calendar'])[1]")
+     @FindBy(xpath = "(//input[@class='bx-lists-input-calendar'])[1]")
     private WebElement startDate;
+
+    @FindBy(xpath = "(//a[@class='bx-calendar-cell bx-calendar-weekend'])[4]")
+    private WebElement startDateClick;
 
     @FindBy(xpath = "(//input[@class='bx-lists-input-calendar'])[2]")
     private WebElement endDate;
+
+    @FindBy(xpath = "(//a[@class='bx-calendar-cell bx-calendar-weekend'])[5]")
+    private WebElement endDateClick;
 
     @FindBy(xpath = "//select[@name='PROPERTY_88']/option")
     private List<WebElement> absenceType;
@@ -45,6 +48,10 @@ public class WorkflowTabPage extends AbstractPageBase {
     @FindBy(xpath = "//span[@class='feed-add-post-micro-title']")
     private WebElement approvalTitle;
 
+    @FindBy(id = "bx-lists-block-errors")
+    private WebElement errorMessage;
+
+
 
     public void navigateToSubModule(String workflowModule) {
         BrowserUtils.wait(2);
@@ -57,22 +64,19 @@ public class WorkflowTabPage extends AbstractPageBase {
         closeSymbol.click();
     }
 
-    public void authorization() {
+    public void enterStartDate(){
         BrowserUtils.wait(2);
-        authorization.sendKeys("UserUser", Keys.ENTER);
-    }
+        startDate.click();
+        BrowserUtils.wait(1);
+        startDateClick.click();
 
-    public void enterStartDate() {
-        BrowserUtils.wait(2);
-        String day = DateTimeUtilities.getCurrentDate("d");
-        startDate.sendKeys(day, Keys.ENTER);
-    }
+        }
 
-    //ending time can be different than start date
     public void enterEndDate() {
         BrowserUtils.wait(2);
-        String day = DateTimeUtilities.getCurrentDate("d");
-        endDate.sendKeys(day, Keys.ENTER);
+        endDate.click();
+        BrowserUtils.wait(1);
+        endDateClick.click();
     }
 
     public void chooseAbsenceType() {
@@ -93,5 +97,11 @@ public class WorkflowTabPage extends AbstractPageBase {
         BrowserUtils.wait(3);
         wait.until(ExpectedConditions.elementToBeClickable(sendBtn)).click();
     }
+
+    public String approveMessage(){
+        BrowserUtils.wait(3);
+        return wait.until(ExpectedConditions.visibilityOf(errorMessage)).getText();
+    }
+
 
 }

@@ -24,7 +24,7 @@ public abstract class AbstractTestBase {
     @BeforeTest
     @Parameters("reportName")
     public void setupTest(@Optional String reportName) {
-        if (reportName == null) {
+        if(reportName == null){
             reportName = "report";
         }
         System.out.println("Report name: " + reportName);
