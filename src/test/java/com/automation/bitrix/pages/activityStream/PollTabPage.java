@@ -6,10 +6,5 @@ import org.openqa.selenium.support.FindBy;
 
 public class PollTabPage extends AbstractPageBase {
 
-    @FindBy(xpath = "body[contenteditable='true']")
-    protected WebElement emailTextBox;
-
-    public static void main(String[] args) {
 
     }
-}
