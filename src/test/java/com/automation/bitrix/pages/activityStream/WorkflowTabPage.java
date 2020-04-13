@@ -102,5 +102,4 @@ public class WorkflowTabPage extends AbstractPageBase {
         return wait.until(ExpectedConditions.visibilityOf(errorMessage)).getText();
     }
 
-
 }
