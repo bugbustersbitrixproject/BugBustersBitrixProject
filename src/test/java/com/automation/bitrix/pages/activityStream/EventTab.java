@@ -3,6 +3,7 @@ package com.automation.bitrix.pages.activityStream;
 import com.automation.bitrix.pages.AbstractPageBase;
 import com.automation.utilities.BrowserUtils;
 
+import com.automation.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 
@@ -10,6 +11,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 
@@ -39,14 +43,16 @@ public class EventTab extends AbstractPageBase {
     private List<WebElement> documentsFromBitrix24;
     @FindBy(xpath = "//a[@href='#'][@class='bx-file-dialog-content-link bx-file-dialog-icon bx-file-dialog-icon-file']")
     private WebElement fileFromBitrix24;
+    @FindBy(xpath ="//*[@title='Click to insert file']")
+    private WebElement clickToInsertFile;
+
    //this sales marketing open  Marketing and advertising file
-////*[@id="bx-file-dialog-content-DiskFileDialog"]/div[3]/div/span[1]/a
-   @FindBy(xpath = "//*[@onclick='javascript:void(0);']")
+
+   @FindBy(xpath = "//*[text()='Logo.gif']")
    private WebElement filenameFromBitrix24;
-    String imageName = "catPicture.jfif";
-    String fileName = "file.txt";
+
 ////this method will usd for uploading file from File yor computer
-    public void uploadFileMethod() {
+    public void uploadFileMethod() throws Exception{
         wait.until(ExpectedConditions.elementToBeClickable(eventModule));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", eventModule);
@@ -55,17 +61,27 @@ public class EventTab extends AbstractPageBase {
         uploadFileIcon.click();
         //click on file upload button
         placeForUpload.click();
-        BrowserUtils.wait(5);
-        String filePath="C://Users//golcu//OneDrive//Masaüstü";
-        String filename="myfirstWebsite";
-        placeForUpload.sendKeys(filePath);
-     //this method does not work
+        Robot r = new Robot();
+        StringSelection strS = new StringSelection("C:\\Users\\golcu\\OneDrive\\Belgeler\\file.txt\\");
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strS,null);
+        BrowserUtils.wait(3);
+        r.keyPress(KeyEvent.VK_CONTROL);
+        r.keyPress(KeyEvent.VK_V);
 
+        r.keyRelease(KeyEvent.VK_CONTROL);
+        r.keyRelease(KeyEvent.VK_V);
+        BrowserUtils.wait(3);
+        r.keyPress(KeyEvent.VK_ENTER);
+        r.keyRelease(KeyEvent.VK_ENTER);
+        BrowserUtils.wait(3);
+
+        driver.findElement(By.id("blog-submit-button-save")).click();
+        BrowserUtils.wait(4);
 
 
 
     }
-    //this method will usd for uploading file from File From Bitrix24
+    //this method will used for uploading file from File From Bitrix24
     public void uploadFileFromBitrix24(){
         wait.until(ExpectedConditions.elementToBeClickable(eventModule));
         //click event module
@@ -95,15 +111,43 @@ public class EventTab extends AbstractPageBase {
 
     //this method will use to prove file uploaded FromBitrix24
     }
-    public String fileNameFromBitix24(){
+    public String fileNameFromBitrix24(){
+        ////*[text()="Logo.gif"]   name of the file == logo.gif
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", eventModule);
-     String actualfileName = filenameFromBitrix24.getText();
-     return actualfileName;
+        String actualfileName = filenameFromBitrix24.getText();
+        return actualfileName;
     }//this method filename from the place we upload
-    public String uploodedFileName(){
-        //title="Click to insert file"
-        ////*[@title='Click to insert file']
-        return driver.findElement(By.xpath("//*[@title='Click to insert file']")).getText();
+
+    public String uplodedFileName(){
+        //"Click to insert file"
+        wait.until(ExpectedConditions.elementToBeClickable(clickToInsertFile));
+        clickToInsertFile.click();
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(driver.findElement(By.xpath("(//*[@class='bx-editor-iframe'])[2]"))));
+        driver .switchTo().frame(driver.findElement(By.xpath("(//*[@class='bx-editor-iframe'])[2]")));
+        BrowserUtils.wait(3);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//body/span[text()='file.txt']"))));
+        BrowserUtils.wait(3);
+        String file=driver.findElement(By.xpath("//body/span[text()='file.txt']")).getText();
+        driver.switchTo().defaultContent();
+        BrowserUtils.wait(8);
+        System.out.println(file);
+        return file;
+
+    }
+    // "this method uploadfile from inteljID")
+    public void uploadfromintelj() {
+        wait.until(ExpectedConditions.elementToBeClickable(eventModule));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", eventModule);
+        //eventModule.click();
+        wait.until(ExpectedConditions.elementToBeClickable(uploadFileIcon));
+        uploadFileIcon.click();
+        //click on file upload button
+        placeForUpload.click();
+        BrowserUtils.wait(2);
+        driver.findElement(By.name("bxu_files[]")).sendKeys(System.getProperty("user.dir") + "/pom.xml");
+        BrowserUtils.wait(2);
+
     }
 }

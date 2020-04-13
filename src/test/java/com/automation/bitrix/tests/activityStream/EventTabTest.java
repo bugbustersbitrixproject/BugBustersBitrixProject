@@ -6,13 +6,14 @@ import com.automation.bitrix.tests.AbstractTestBase;
 import com.automation.utilities.BrowserUtils;
 
 import org.testng.Assert;
+
 import org.testng.annotations.Test;
 
 public class EventTabTest extends AbstractTestBase {
 
 
     @Test(description = "User should be able to click on upload files icon to upload files")
-    public void test1(){
+    public void test1() throws Exception{
 test=report.createTest("upload file from computer");
 
        LoginPage login=new LoginPage();
@@ -20,6 +21,9 @@ test=report.createTest("upload file from computer");
        BrowserUtils.wait(4);
        EventTab eventPage = new EventTab();
        eventPage.uploadFileMethod();
+       String fileName="file";
+       BrowserUtils.wait(5);
+       Assert.assertTrue(eventPage.uplodedFileName().contains(fileName));
     }
     @Test(description="User should be able to click on upload files icon to upload Bitrix24files")
      public void test2(){
@@ -29,8 +33,20 @@ test=report.createTest("upload file from computer");
         BrowserUtils.wait(4);
         EventTab eventPage = new EventTab();
         eventPage.uploadFileFromBitrix24();
-        Assert.assertTrue(eventPage.fileNameFromBitix24().equals(eventPage.uploodedFileName()));
+        System.out.println(eventPage.fileNameFromBitrix24());
+
+    }@Test(description = "this method uploadfile from inteljID")
+    public void uploadFromIntelj(){
+        test=report.createTest("upload file from computer");
+        LoginPage login=new LoginPage();
+        login.loginAs("help_desk2");
+        BrowserUtils.wait(4);
+        EventTab eventPage = new EventTab();
+        eventPage.uploadfromintelj();
+ 
     }
 
 
-}
+
+    }
+
