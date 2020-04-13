@@ -44,6 +44,8 @@ public class WorkflowTabPage extends AbstractPageBase {
     @FindBy(xpath = "//span[@class='feed-add-post-micro-title']")
     private WebElement approvalTitle;
 
+    @FindBy(id = "bx-lists-block-errors")
+    private WebElement errorMessage;
 
     public void navigateToSubModule(String workflowModule) {
         BrowserUtils.wait(2);
@@ -63,13 +65,15 @@ public class WorkflowTabPage extends AbstractPageBase {
 
     public void enterStartDate() {
         BrowserUtils.wait(2);
-        String day = DateTimeUtilities.getCurrentDate("d");
+        String day = DateTimeUtilities.getCurrentDate("MM/dd/yyyy");
         startDate.sendKeys(day, Keys.ENTER);
     }
     //ending time can be different than start date
     public void enterEndDate() {
         BrowserUtils.wait(2);
-        String day = DateTimeUtilities.getCurrentDate("d");
+        String day = DateTimeUtilities.getCurrentDate("MM/dd/yyyy");
+        String dayFuture = day.substring(day.indexOf("/")+1,day.lastIndexOf("/"));
+        day = day.substring(0,day.indexOf("/")+1) + (Integer.valueOf(dayFuture)+5) + day.substring(day.lastIndexOf("/"));
         endDate.sendKeys(day, Keys.ENTER);
     }
 
@@ -90,6 +94,11 @@ public class WorkflowTabPage extends AbstractPageBase {
     public void clickSendBtn() {
         BrowserUtils.wait(3);
         wait.until(ExpectedConditions.elementToBeClickable(sendBtn)).click();
+    }
+
+    public String approveMessage(){
+        BrowserUtils.wait(3);
+        return wait.until(ExpectedConditions.visibilityOf(errorMessage)).getText();
     }
 
 }
