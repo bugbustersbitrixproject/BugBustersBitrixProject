@@ -5,13 +5,9 @@ import com.automation.bitrix.tests.AbstractTestBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class WorkflowTabTest extends AbstractTestBase {
+public class WorkflowTabTest extends AbstractTestBase{
 
 
-
-
-    // This module  is not working.
-    //After clicking send key, new page is not loading.
     @Test
     public void accessToLeaveApproval() {
         test = report.createTest("Verify Leave Approval");
@@ -39,3 +35,6 @@ public class WorkflowTabTest extends AbstractTestBase {
         test.pass("Workflow parameters need to be configured.");
     }
 }
+
+
+
