@@ -1,5 +1,6 @@
 package com.automation.bitrix.pages;
 
+import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.ConfigurationReader;
 import com.automation.utilities.Driver;
 import org.openqa.selenium.WebElement;
