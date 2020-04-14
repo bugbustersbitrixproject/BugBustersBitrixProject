@@ -30,9 +30,10 @@ public class EmployeePostsTest extends AbstractTestBase {
               loginPage.loginAs(userName,password);
               test.info("login with "+userName+" credential");
 
+              //int index=employeePostsPage.randomNumber();
+
               if(!employeePostsPage.getTextLikeResult().contains("You")){
                      employeePostsPage.clickLike();
-                    // employeePostsPage.clickLikeRandomly();
                      test.info("user clicked like button");
               }else{
                      employeePostsPage.clickLike();
