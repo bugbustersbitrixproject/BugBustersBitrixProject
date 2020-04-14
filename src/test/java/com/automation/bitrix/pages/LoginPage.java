@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
+
     @FindBy(name = "USER_LOGIN")
     private WebElement userName;
 
@@ -51,5 +52,6 @@ public class LoginPage {
     }
 
 }
+
 
 
