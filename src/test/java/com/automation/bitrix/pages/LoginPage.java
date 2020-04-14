@@ -1,5 +1,6 @@
 package com.automation.bitrix.pages;
 
+import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.ConfigurationReader;
 import com.automation.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
+
     @FindBy(name = "USER_LOGIN")
     private WebElement userName;
 
@@ -51,5 +53,6 @@ public class LoginPage {
     }
 
 }
+
 
 
