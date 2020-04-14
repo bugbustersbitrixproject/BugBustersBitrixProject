@@ -3,7 +3,10 @@ package com.automation.bitrix.pages.activityStream;
 import com.automation.bitrix.pages.AbstractPageBase;
 import com.automation.utilities.BrowserUtils;
 import org.openqa.selenium.By;
+<<<<<<< HEAD
 import org.openqa.selenium.Keys;
+=======
+>>>>>>> 218558cc75200978fd0ce3a8c4c6bb2f10131751
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,12 +24,22 @@ public class EmployeePostsPage extends AbstractPageBase {
     @FindBy(linkText = "Like")
     private WebElement like;
 
+<<<<<<< HEAD
     @FindBy(xpath = "//a[text()='Like']")
+=======
+    @FindBy(xpath = "//a[@class='bx-ilike-text']")   // //a[text()='Like']
+>>>>>>> 218558cc75200978fd0ce3a8c4c6bb2f10131751
     private List<WebElement> likes;
 
     @FindBy(css = "[id^='bx-ilike-top-users']")
     private WebElement likeResult;
 
+<<<<<<< HEAD
+=======
+    @FindBy(xpath = "//div[contains(@id,'bx-ilike-top-users')]")
+    private List<WebElement> likeResults;
+
+>>>>>>> 218558cc75200978fd0ce3a8c4c6bb2f10131751
     @FindBy(linkText = "Comment")
     private WebElement commentButton;
 
@@ -54,6 +67,7 @@ public class EmployeePostsPage extends AbstractPageBase {
         BrowserUtils.wait(1);
     }
 
+<<<<<<< HEAD
     public void clickLikeRandomly(){
          Random random=new Random();
          int randomIndexNum=random.nextInt(likes.size());
@@ -68,6 +82,35 @@ public class EmployeePostsPage extends AbstractPageBase {
 
     }
 
+=======
+    public String  getTextLikeResult(){
+
+        return likeResult.getText();
+
+    }
+
+    public int randomNumber(){
+         Random random=new Random();
+         return random.nextInt(likes.size());
+
+    }
+
+    public void clickRandomly(int randomNum){
+        BrowserUtils.scrollTo(likes.get(randomNum));
+        wait.until(ExpectedConditions.elementToBeClickable(likes.get(randomNum))).click();
+        //likes.get(randomNum).click();
+
+    }
+
+    public String getTextRandomClick(int randomNum){
+
+        return likeResults.get(randomNum).getText();
+    }
+
+
+
+
+>>>>>>> 218558cc75200978fd0ce3a8c4c6bb2f10131751
     public void clickUnFollow(){
 
        followUnFollow.click();

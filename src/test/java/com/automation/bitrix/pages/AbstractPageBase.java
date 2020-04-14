@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+<<<<<<< HEAD
 public abstract class AbstractPageBase {
 
 
@@ -49,6 +50,58 @@ public abstract class AbstractPageBase {
               }
 
        }
+=======
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+
+public abstract class AbstractPageBase {
+
+
+    protected WebDriver driver = Driver.getDriver();
+    protected WebDriverWait wait = new WebDriverWait(driver, 25);
+    protected StringSelection stringSelection;
+    protected Robot robot;
+
+    {
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FindBy(id = "search-textbox-input")
+    protected WebElement searchBox;
+
+    @FindBy(id = "user-name")
+    protected WebElement user;
+
+
+    public AbstractPageBase() {
+
+        PageFactory.initElements(driver, this);
+    }
+
+
+    public void navigateTo(String moduleName) {
+
+        String moduleXpath = "//span[@class='menu-item-link-text'  and contains(text(),'" + moduleName + "')]";
+        WebElement module = driver.findElement(By.xpath(moduleXpath));
+
+        // it is for hidden modules under more
+        if (moduleName.equals("Applications") || moduleName.equals("Workflows")) {
+            WebElement more = driver.findElement(By.xpath("//span[@class='menu-favorites-more-text']"));
+            more.click();
+            wait.until(ExpectedConditions.elementToBeClickable(module)).click();
+
+
+        } else {
+            module.click();
+        }
+
+    }
+>>>>>>> 218558cc75200978fd0ce3a8c4c6bb2f10131751
 
     //to  navigate modules under Activity Stream
     public void navigateToTab(String tabName) {
@@ -57,7 +110,11 @@ public abstract class AbstractPageBase {
             WebElement more = driver.findElement(By.xpath("//span[@id='feed-add-post-form-link-text' and contains(text(),'More')]"));
             more.click();
             BrowserUtils.wait(3);
+<<<<<<< HEAD
             WebElement subModule=driver.findElement(By.xpath("//span[@class='menu-popup-item-text' and contains(text(),'"+tabName+"')]"));
+=======
+            WebElement subModule = driver.findElement(By.xpath("//span[@class='menu-popup-item-text' and contains(text(),'" + tabName + "')]"));
+>>>>>>> 218558cc75200978fd0ce3a8c4c6bb2f10131751
             subModule.click();
         } else {
             String tabXpath = "//span[@class='feed-add-post-form-link']//span[text()='" + tabName + "']";
