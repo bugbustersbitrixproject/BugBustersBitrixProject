@@ -21,6 +21,7 @@ public class EventTabTest extends AbstractTestBase {
        BrowserUtils.wait(4);
        EventTab eventPage = new EventTab();
        eventPage.uploadFileMethod();
+        BrowserUtils.wait(4);
        eventPage.uplodedFileName("file.txt");
         BrowserUtils.wait(4);
        Assert.assertTrue(eventPage.uplodedFileName("file.txt").contains("file"));

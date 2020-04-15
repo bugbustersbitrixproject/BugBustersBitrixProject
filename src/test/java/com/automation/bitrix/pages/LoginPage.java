@@ -1,6 +1,5 @@
 package com.automation.bitrix.pages;
 
-import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.ConfigurationReader;
 import com.automation.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -50,6 +49,12 @@ public class LoginPage {
         password.sendKeys(ConfigurationReader.getProperty("password"));
         login.click();
 
+    }
+
+    public void login() {
+        userName.sendKeys(ConfigurationReader.getProperty("hr1"));
+        password.sendKeys(ConfigurationReader.getProperty("password"));
+        login.click();
     }
 
 }

@@ -50,7 +50,7 @@ public class EventTab extends AbstractPageBase {
         wait.until(ExpectedConditions.elementToBeClickable(eventModule));
        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", eventModule);//eventModule.click();
-        navigateTo("Event");
+
         wait.until(ExpectedConditions.elementToBeClickable(uploadFileIcon));
         uploadFileIcon.click();
         //click on file upload button
