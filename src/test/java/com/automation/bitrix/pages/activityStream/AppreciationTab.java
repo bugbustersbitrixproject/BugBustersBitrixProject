@@ -10,6 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
+import java.util.Random;
+
 public class AppreciationTab extends AbstractPageBase {
 
 
@@ -30,32 +33,82 @@ appreciation by clicking on Appreciation subheading from ""More"" tab under Acti
 11. User should be able to see all types of appreciation illustration/emojis by clicking on the existing illustration/emojis."
  */
 
+
+    //#AC_1
     @FindBy(xpath = "//*[@id=\"feed-add-post-content-message\"]/div//span[@class=\"feed-add-post-form-but feed-add-file\"]")
     private WebElement upload_files_icon;
 
     @FindBy(name = "bxu_files[]")
     private WebElement upload_files_and_images_tab;
+    //27115e1a6c
 
+
+    @FindBy(xpath = "//div[@id=\"divoPostFormLHE_blogPostForm\"]//span[text()=\"Select document from Bitrix24\"]")
+    private WebElement select_document_from_bitrix24_btn;
+
+
+    @FindBy()
+    private List<WebElement> recent_items_to_select_doc_from_Bitrix24;
+
+
+    @FindBy(xpath = "//span[text()=\"Select document\"]")
+    private WebElement select_document_btn;
+
+
+    @FindBy(id = "blog-submit-button-save")
+    private WebElement send_btn;
+
+    @FindBy(xpath = "//td[@class=\"files-storage\"]//span[text()=\"Loading\"]")
+    private List<WebElement> loading;
+
+
+
+    //#AC_1
 
     public void click_upload_btn() {
         BrowserUtils.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(upload_files_icon)).click();
+
     }
 
     public void upload_file_and_images(){
         BrowserUtils.waitForPageToLoad(10);
             BrowserUtils.wait(2);
-            driver.findElement(By.name("bxu_files[]")).sendKeys(System.getProperty("user.dir")+"/pom.xml");
+
+            upload_files_icon.click();
             BrowserUtils.wait(2);
+            //upload_files_and_images_tab.sendKeys(System.getProperty("user.dir")+"/pom.xml");
+            upload_files_and_images_tab.sendKeys("C:\\Users\\h_civ\\Desktop\\seda yoga\\seda hp\\Downloads\\sp88815.exe");
+
+            BrowserUtils.wait(2);
+            if(loading.size()>0){
+                wait.until(ExpectedConditions.invisibilityOf(loading.get(0)));
+            }
+
+            send_btn.click();
+    }
 
 
+    public void upload_random_recent_items_from_Bitrix24(){
+        BrowserUtils.waitForPageToLoad(10);
+        BrowserUtils.wait(2);
 
-        //BrowserUtils.wait(2);
-        //    driver.findElement(By.id("bx-b-uploadfile-blogPostForm")).click();
-        //    BrowserUtils.wait(2);
-        //    driver.findElement(By.name("bxu_files[]")).sendKeys(System.getProperty("user.dir")+"/pom.xml");
-        //    BrowserUtils.wait(2);
+        upload_files_icon.click();
+        BrowserUtils.wait(2);
 
+        select_document_from_bitrix24_btn.click();
+        BrowserUtils.wait(5);
+        Random random = new Random();
+        int index_recent_Items = random.nextInt(recent_items_to_select_doc_from_Bitrix24.size());
+        recent_items_to_select_doc_from_Bitrix24.get(index_recent_Items).click();
+        select_document_btn.click();
+
+        BrowserUtils.wait(2);
+        if(loading.size()>0){
+            wait.until(ExpectedConditions.invisibilityOf(loading.get(0)));
+        }
+
+        send_btn.click();
 
     }
 
