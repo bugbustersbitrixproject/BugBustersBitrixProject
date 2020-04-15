@@ -46,7 +46,7 @@ public class EventTabTest extends AbstractTestBase {
         login.loginAs("help_desk2");
         BrowserUtils.wait(4);
         EventTab eventPage = new EventTab();
-        eventPage.uploadfromintelj();
+        eventPage.uploadfromintelIJ();
  
     }
 

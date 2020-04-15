@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
@@ -28,7 +29,7 @@ public class EventTab extends AbstractPageBase {
     private WebElement selectDocumentFromBitrix24;
     @FindBy(xpath = "//*[@id='DiskFileDialog']/div[3]/span[1]")
     private WebElement selectDocumentButton;
-//company drive with name 'Sales and marketing' click
+    //company drive with name 'Sales and marketing' click
     @FindBy(xpath = "//*[@title='Sales and marketing']")
     private WebElement salesAndMarketigFile;
     //company drive with name 'Marketing and Advertising File' click
@@ -38,26 +39,26 @@ public class EventTab extends AbstractPageBase {
     private List<WebElement> documentsFromBitrix24;
     @FindBy(xpath = "//a[@href='#'][@class='bx-file-dialog-content-link bx-file-dialog-icon bx-file-dialog-icon-file']")
     private WebElement fileFromBitrix24;
-    @FindBy(xpath ="//*[@title='Click to insert file']")
+    @FindBy(xpath = "//*[@title='Click to insert file']")
     private WebElement clickToInsertFile;
-    @FindBy(xpath ="//*[@id='blog-submit-button-save']")
+    @FindBy(xpath = "//*[@id='blog-submit-button-save']")
     private WebElement submit;
     @FindBy(xpath = "//*[text()='Logo.gif']")
-   private WebElement filenameFromBitrix24;
+    private WebElement filenameFromBitrix24;
 
-////this method will usd for uploading file from File yor computer
-    public void uploadFileMethod() throws Exception{
+    ////this method will usd for uploading file from File yor computer
+    public void uploadFileMethod() throws Exception {
         wait.until(ExpectedConditions.elementToBeClickable(eventModule));
-       JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", eventModule);//eventModule.click();
-
+        //JavascriptExecutor js = (JavascriptExecutor) driver;
+        //  js.executeScript("arguments[0].click();", eventModule);//eventModule.click();
+        navigateToTab("Event");
         wait.until(ExpectedConditions.elementToBeClickable(uploadFileIcon));
         uploadFileIcon.click();
         //click on file upload button
         placeForUpload.click();
         Robot r = new Robot();
         StringSelection strS = new StringSelection("C:\\Users\\golcu\\OneDrive\\Belgeler\\file.txt\\");
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strS,null);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strS, null);
         BrowserUtils.wait(3);
         r.keyPress(KeyEvent.VK_CONTROL);
         r.keyPress(KeyEvent.VK_V);
@@ -71,12 +72,12 @@ public class EventTab extends AbstractPageBase {
         BrowserUtils.clickWithJS(submit);
 
     }
+
     //this method will used for uploading file from File From Bitrix24
-    public void uploadFileFromBitrix24(){
+    public void uploadFileFromBitrix24() {
         wait.until(ExpectedConditions.elementToBeClickable(eventModule));
+        navigateToTab("Event");
         //click event module
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", eventModule);
         wait.until(ExpectedConditions.elementToBeClickable(uploadFileIcon));
         BrowserUtils.wait(4);
         //click upload icon
@@ -99,9 +100,10 @@ public class EventTab extends AbstractPageBase {
         selectDocumentButton.click();
 
 
-    //this method will use to prove file uploaded FromBitrix24
+        //this method will use to prove file uploaded FromBitrix24
     }
-    public String fileNameFromBitrix24(){
+
+    public String fileNameFromBitrix24() {
         ////*[text()="Logo.gif"]   name of the file == logo.gif
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", eventModule);
@@ -111,20 +113,20 @@ public class EventTab extends AbstractPageBase {
 
     //this method filename from the place we upload
 
-    public String uplodedFileName(String fileName){
+    public String uplodedFileName(String fileName) {
         //this part can change because of the file name of we uploded
 
-        WebElement fileThatWeSend=driver.findElement(By.xpath("//*[@class='feed-com-file-name'][contains(@title,'"+fileName.substring(0,fileName.indexOf("."))+"')]"));
+        WebElement fileThatWeSend = driver.findElement(By.xpath("//*[@class='feed-com-file-name'][contains(@title,'" + fileName.substring(0, fileName.indexOf(".")) + "')]"));
         BrowserUtils.wait(3);
-       return fileThatWeSend.getText();
+        return fileThatWeSend.getText();
 
 
     }
+
     // "this method uploadfile from inteljID")
-    public void uploadfromintelj() {
+    public void uploadfromintelIJ() {
         wait.until(ExpectedConditions.elementToBeClickable(eventModule));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", eventModule);
+        navigateToTab("Event");
         //eventModule.click();
         wait.until(ExpectedConditions.elementToBeClickable(uploadFileIcon));
         uploadFileIcon.click();
