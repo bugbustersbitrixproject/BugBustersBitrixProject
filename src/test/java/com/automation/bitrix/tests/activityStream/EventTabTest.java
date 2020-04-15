@@ -14,16 +14,19 @@ public class EventTabTest extends AbstractTestBase {
 
     @Test(description = "User should be able to click on upload files icon to upload files")
     public void test1() throws Exception{
-test=report.createTest("upload file from computer");
+        test=report.createTest("upload file from computer");
 
        LoginPage login=new LoginPage();
        login.loginAs("help_desk2");
        BrowserUtils.wait(4);
        EventTab eventPage = new EventTab();
        eventPage.uploadFileMethod();
-       String fileName="file";
-       BrowserUtils.wait(5);
-       Assert.assertTrue(eventPage.uplodedFileName().contains(fileName));
+       eventPage.uplodedFileName("file.txt");
+        BrowserUtils.wait(4);
+       Assert.assertTrue(eventPage.uplodedFileName("file.txt").contains("file"));
+
+       BrowserUtils.wait(3);
+
     }
     @Test(description="User should be able to click on upload files icon to upload Bitrix24files")
      public void test2(){
@@ -45,6 +48,7 @@ test=report.createTest("upload file from computer");
         eventPage.uploadfromintelj();
  
     }
+
 
 
 

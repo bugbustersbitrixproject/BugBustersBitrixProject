@@ -2,20 +2,15 @@ package com.automation.bitrix.pages.activityStream;
 
 import com.automation.bitrix.pages.AbstractPageBase;
 import com.automation.utilities.BrowserUtils;
-
-import com.automation.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.util.List;
-
 
 public class EventTab extends AbstractPageBase {
     @FindBy(xpath = "//*[@id='feed-add-post-form-tab-calendar']/span")
@@ -45,18 +40,17 @@ public class EventTab extends AbstractPageBase {
     private WebElement fileFromBitrix24;
     @FindBy(xpath ="//*[@title='Click to insert file']")
     private WebElement clickToInsertFile;
-
-   //this sales marketing open  Marketing and advertising file
-
-   @FindBy(xpath = "//*[text()='Logo.gif']")
+    @FindBy(xpath ="//*[@id='blog-submit-button-save']")
+    private WebElement submit;
+    @FindBy(xpath = "//*[text()='Logo.gif']")
    private WebElement filenameFromBitrix24;
 
 ////this method will usd for uploading file from File yor computer
     public void uploadFileMethod() throws Exception{
         wait.until(ExpectedConditions.elementToBeClickable(eventModule));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", eventModule);
-        //eventModule.click();
+       JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", eventModule);//eventModule.click();
+        navigateTo("Event");
         wait.until(ExpectedConditions.elementToBeClickable(uploadFileIcon));
         uploadFileIcon.click();
         //click on file upload button
@@ -67,7 +61,6 @@ public class EventTab extends AbstractPageBase {
         BrowserUtils.wait(3);
         r.keyPress(KeyEvent.VK_CONTROL);
         r.keyPress(KeyEvent.VK_V);
-
         r.keyRelease(KeyEvent.VK_CONTROL);
         r.keyRelease(KeyEvent.VK_V);
         BrowserUtils.wait(3);
@@ -75,10 +68,7 @@ public class EventTab extends AbstractPageBase {
         r.keyRelease(KeyEvent.VK_ENTER);
         BrowserUtils.wait(3);
 
-        driver.findElement(By.id("blog-submit-button-save")).click();
-        BrowserUtils.wait(4);
-
-
+        BrowserUtils.clickWithJS(submit);
 
     }
     //this method will used for uploading file from File From Bitrix24
@@ -91,7 +81,6 @@ public class EventTab extends AbstractPageBase {
         BrowserUtils.wait(4);
         //click upload icon
         uploadFileIcon.click();
-
         //click select Document From Bitrix
         selectDocumentFromBitrix24.click();
         BrowserUtils.wait(3);
@@ -109,6 +98,7 @@ public class EventTab extends AbstractPageBase {
         BrowserUtils.wait(3);
         selectDocumentButton.click();
 
+
     //this method will use to prove file uploaded FromBitrix24
     }
     public String fileNameFromBitrix24(){
@@ -117,22 +107,17 @@ public class EventTab extends AbstractPageBase {
         js.executeScript("arguments[0].click();", eventModule);
         String actualfileName = filenameFromBitrix24.getText();
         return actualfileName;
-    }//this method filename from the place we upload
+    }
 
-    public String uplodedFileName(){
-        //"Click to insert file"
-        wait.until(ExpectedConditions.elementToBeClickable(clickToInsertFile));
-        clickToInsertFile.click();
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(driver.findElement(By.xpath("(//*[@class='bx-editor-iframe'])[2]"))));
-        driver .switchTo().frame(driver.findElement(By.xpath("(//*[@class='bx-editor-iframe'])[2]")));
+    //this method filename from the place we upload
+
+    public String uplodedFileName(String fileName){
+        //this part can change because of the file name of we uploded
+
+        WebElement fileThatWeSend=driver.findElement(By.xpath("//*[@class='feed-com-file-name'][contains(@title,'"+fileName.substring(0,fileName.indexOf("."))+"')]"));
         BrowserUtils.wait(3);
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//body/span[text()='file.txt']"))));
-        BrowserUtils.wait(3);
-        String file=driver.findElement(By.xpath("//body/span[text()='file.txt']")).getText();
-        driver.switchTo().defaultContent();
-        BrowserUtils.wait(8);
-        System.out.println(file);
-        return file;
+       return fileThatWeSend.getText();
+
 
     }
     // "this method uploadfile from inteljID")
