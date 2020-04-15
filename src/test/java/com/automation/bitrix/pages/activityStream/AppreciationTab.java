@@ -1,8 +1,18 @@
 package com.automation.bitrix.pages.activityStream;
 
 import com.automation.bitrix.pages.AbstractPageBase;
+import com.automation.utilities.BrowserUtils;
+import com.automation.utilities.Driver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AppreciationTab extends AbstractPageBase {
+
+
 /*
 "6. As a user, I should be able to send
 appreciation by clicking on Appreciation subheading from ""More"" tab under Activity Stream."
@@ -20,6 +30,37 @@ appreciation by clicking on Appreciation subheading from ""More"" tab under Acti
 11. User should be able to see all types of appreciation illustration/emojis by clicking on the existing illustration/emojis."
  */
 
+    @FindBy(xpath = "//*[@id=\"feed-add-post-content-message\"]/div//span[@class=\"feed-add-post-form-but feed-add-file\"]")
+    private WebElement upload_files_icon;
+
+    @FindBy(name = "bxu_files[]")
+    private WebElement upload_files_and_images_tab;
+
+
+    public void click_upload_btn() {
+        BrowserUtils.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(upload_files_icon)).click();
+    }
+
+    public void upload_file_and_images(){
+        BrowserUtils.waitForPageToLoad(10);
+            BrowserUtils.wait(2);
+            driver.findElement(By.name("bxu_files[]")).sendKeys(System.getProperty("user.dir")+"/pom.xml");
+            BrowserUtils.wait(2);
+
+
+
+        //BrowserUtils.wait(2);
+        //    driver.findElement(By.id("bx-b-uploadfile-blogPostForm")).click();
+        //    BrowserUtils.wait(2);
+        //    driver.findElement(By.name("bxu_files[]")).sendKeys(System.getProperty("user.dir")+"/pom.xml");
+        //    BrowserUtils.wait(2);
+
+
+    }
+
+
 
 
 }
+
