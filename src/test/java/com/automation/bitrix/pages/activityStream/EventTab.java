@@ -45,13 +45,15 @@ public class EventTab extends AbstractPageBase {
     private WebElement submit;
     @FindBy(xpath = "//*[text()='Logo.gif']")
     private WebElement filenameFromBitrix24;
+    @FindBy(css = "img[id^='disk-inline-image']")
+    private WebElement image;
 
     ////this method will usd for uploading file from File yor computer
     public void uploadFileMethod() throws Exception {
         wait.until(ExpectedConditions.elementToBeClickable(eventModule));
         //JavascriptExecutor js = (JavascriptExecutor) driver;
         //  js.executeScript("arguments[0].click();", eventModule);//eventModule.click();
-        navigateToTab("Event");
+        //navigateToTab("Event");
         wait.until(ExpectedConditions.elementToBeClickable(uploadFileIcon));
         uploadFileIcon.click();
         //click on file upload button
@@ -72,12 +74,11 @@ public class EventTab extends AbstractPageBase {
         BrowserUtils.clickWithJS(submit);
 
     }
+    //thid method upload file from computer without robot class
+
 
     //this method will used for uploading file from File From Bitrix24
     public void uploadFileFromBitrix24() {
-        wait.until(ExpectedConditions.elementToBeClickable(eventModule));
-        navigateToTab("Event");
-        //click event module
         wait.until(ExpectedConditions.elementToBeClickable(uploadFileIcon));
         BrowserUtils.wait(4);
         //click upload icon
@@ -137,4 +138,35 @@ public class EventTab extends AbstractPageBase {
         BrowserUtils.wait(2);
 
     }
-}
+  //I am working this method it is not pass yet
+    public void uploadFile(String file1, String file2) {
+        wait.until(ExpectedConditions.elementToBeClickable(eventModule));
+        navigateToTab("Event");
+        wait.until(ExpectedConditions.elementToBeClickable(uploadFileIcon));
+        uploadFileIcon.click();
+        //click on file upload button
+
+        String path;
+        String path2;
+
+        //user.dir will give this path
+        path = System.getProperty("user.dir") + System.getProperty("file.separator") + file1;
+        path2 = System.getProperty("user.dir") + System.getProperty("file.separator") + file2;
+        BrowserUtils.wait(3);
+        placeForUpload.sendKeys(path);
+        BrowserUtils.wait(3);
+        placeForUpload.sendKeys(path2);
+        BrowserUtils.wait(3);
+    } public void sendFiles() {
+        submit.click();
+        BrowserUtils.wait(3);
+    }
+    public String photoNameText(String imageName){
+
+        WebElement imageN=driver.findElement(By.xpath("[contains(@title,'" + imageName.substring(0, imageName.indexOf(".")) + "')]"));
+        return imageN.getText();
+    }
+
+    public void clickOnImage(){
+        image.click();
+    }}
