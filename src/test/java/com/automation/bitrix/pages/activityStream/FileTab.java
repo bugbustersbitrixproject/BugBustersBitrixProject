@@ -2,6 +2,7 @@ package com.automation.bitrix.pages.activityStream;
 
 import com.automation.bitrix.pages.AbstractPageBase;
 import com.automation.utilities.BrowserUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -23,16 +24,9 @@ public class FileTab extends AbstractPageBase {
     private WebElement fileTitle;
 
     public void uploadFile(String file1, String file2) {
-        String path;
-        String path2;
-        //user.dir will give this path  C:\Users\1\Desktop\bugbusters\BugBustersBitrixProject
-        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-            path = System.getProperty("user.dir") + "\\" + file1;
-            path2 = System.getProperty("user.dir") + "\\" + file2;
-        } else {
-            path = System.getProperty("user.dir") + "/" + file1;
-            path2 = System.getProperty("user.dir") + "/" + file2;
-        }
+        String path = System.getProperty("user.dir") + System.getProperty("file.separator") + file1;
+        String path2 = System.getProperty("user.dir") + System.getProperty("file.separator") + file2;
+        //path2="C:\Users\1\Desktop\bugbusters\BugBustersBitrixProject\teamlogo.jpg"
         BrowserUtils.wait(3);
         uploadFileOption.sendKeys(path);
         BrowserUtils.wait(3);
