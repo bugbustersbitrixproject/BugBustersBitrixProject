@@ -18,7 +18,7 @@ public class FileTabTest extends AbstractTestBase {
         test.info("Login successfully");
 
         FileTab fileTab = new FileTab();
-        fileTab.navigateToTab("File");
+        //fileTab.navigateToTab("File");
         test.info("Navigated to File tab");
 
         fileTab.uploadFile("diary.txt", "teamlogo.jpg");
