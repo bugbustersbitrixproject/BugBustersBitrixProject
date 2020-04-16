@@ -3,10 +3,6 @@ package com.automation.bitrix.pages.activityStream;
 import com.automation.bitrix.pages.AbstractPageBase;
 import com.automation.utilities.BrowserUtils;
 import org.openqa.selenium.By;
-<<<<<<< HEAD
-import org.openqa.selenium.Keys;
-=======
->>>>>>> 218558cc75200978fd0ce3a8c4c6bb2f10131751
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,22 +20,15 @@ public class EmployeePostsPage extends AbstractPageBase {
     @FindBy(linkText = "Like")
     private WebElement like;
 
-<<<<<<< HEAD
-    @FindBy(xpath = "//a[text()='Like']")
-=======
     @FindBy(xpath = "//a[@class='bx-ilike-text']")   // //a[text()='Like']
->>>>>>> 218558cc75200978fd0ce3a8c4c6bb2f10131751
     private List<WebElement> likes;
 
     @FindBy(css = "[id^='bx-ilike-top-users']")
     private WebElement likeResult;
 
-<<<<<<< HEAD
-=======
     @FindBy(xpath = "//div[contains(@id,'bx-ilike-top-users')]")
     private List<WebElement> likeResults;
 
->>>>>>> 218558cc75200978fd0ce3a8c4c6bb2f10131751
     @FindBy(linkText = "Comment")
     private WebElement commentButton;
 
@@ -67,22 +56,6 @@ public class EmployeePostsPage extends AbstractPageBase {
         BrowserUtils.wait(1);
     }
 
-<<<<<<< HEAD
-    public void clickLikeRandomly(){
-         Random random=new Random();
-         int randomIndexNum=random.nextInt(likes.size());
-         likes.get(randomIndexNum).click();
-         BrowserUtils.wait(2);
-
-    }
-
-    public String  getTextLikeResult(){
-
-       return likeResult.getText();
-
-    }
-
-=======
     public String  getTextLikeResult(){
 
         return likeResult.getText();
@@ -110,7 +83,6 @@ public class EmployeePostsPage extends AbstractPageBase {
 
 
 
->>>>>>> 218558cc75200978fd0ce3a8c4c6bb2f10131751
     public void clickUnFollow(){
 
        followUnFollow.click();

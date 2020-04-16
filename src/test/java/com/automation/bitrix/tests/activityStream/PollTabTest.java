@@ -1,8 +1,5 @@
 package com.automation.bitrix.tests.activityStream;
 
-<<<<<<< HEAD
-public class PollTabTest {
-=======
 import com.automation.bitrix.pages.LoginPage;
 import com.automation.bitrix.pages.activityStream.PollTabPage;
 import com.automation.bitrix.tests.AbstractTestBase;
@@ -39,5 +36,4 @@ PollTabPage poll = new PollTabPage();
     Assert.assertTrue(poll.uploadImageFromDesktop(filePath,expectedFileName,uploadedImage));
     test.pass("verified that user can upload image from desktop");
 }
->>>>>>> 218558cc75200978fd0ce3a8c4c6bb2f10131751
 }

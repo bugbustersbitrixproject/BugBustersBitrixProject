@@ -24,11 +24,8 @@ public abstract class AbstractTestBase {
     @BeforeTest
     @Parameters("reportName")
     public void setupTest(@Optional String reportName) {
-        if(reportName == null){
-            reportName = "report";
-        }
-        System.out.println("Report name: " + reportName);
         reportName = reportName == null ? "report.html" : reportName + ".html";
+        System.out.println("Report name: " + reportName);
         report = new ExtentReports();
         String reportPath = "";
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
