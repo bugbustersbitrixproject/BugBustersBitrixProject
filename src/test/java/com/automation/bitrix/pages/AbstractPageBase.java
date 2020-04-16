@@ -42,7 +42,6 @@ public abstract class AbstractPageBase {
         PageFactory.initElements(driver, this);
     }
 
-
     public void navigateTo(String moduleName) {
 
         String moduleXpath = "//span[@class='menu-item-link-text'  and contains(text(),'" + moduleName + "')]";
