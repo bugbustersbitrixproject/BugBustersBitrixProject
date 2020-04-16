@@ -141,7 +141,7 @@ public class EventTab extends AbstractPageBase {
   //I am working this method it is not pass yet
     public void uploadFile(String file1, String file2) {
         wait.until(ExpectedConditions.elementToBeClickable(eventModule));
-        navigateToTab("Event");
+
         wait.until(ExpectedConditions.elementToBeClickable(uploadFileIcon));
         uploadFileIcon.click();
         //click on file upload button
