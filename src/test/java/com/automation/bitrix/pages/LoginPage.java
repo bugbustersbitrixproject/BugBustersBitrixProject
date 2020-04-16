@@ -55,6 +55,7 @@ public class LoginPage extends AbstractPageBase {
         userName.sendKeys(ConfigurationReader.getProperty("hr1"));
         password.sendKeys(ConfigurationReader.getProperty("password"));
         login.click();
+
     }
 
 }
