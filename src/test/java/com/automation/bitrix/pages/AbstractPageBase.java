@@ -51,7 +51,7 @@ public abstract class AbstractPageBase {
             WebElement more = driver.findElement(By.xpath("//span[@id='feed-add-post-form-link-text' and contains(text(),'More')]"));
             more.click();
             BrowserUtils.wait(3);
-            WebElement subModule=driver.findElement(By.xpath("//span[@class='menu-popup-item-text' and contains(text(),'"+tabName+"')]"));
+            WebElement subModule = driver.findElement(By.xpath("//span[@class='menu-popup-item-text' and contains(text(),'" + tabName + "')]"));
             subModule.click();
         } else {
             tab.click();
@@ -93,6 +93,7 @@ public abstract class AbstractPageBase {
         }
     }
 }
+
 
 
 
