@@ -1,5 +1,4 @@
 package com.automation.bitrix.pages.activityStream;
-
 import com.automation.bitrix.pages.AbstractPageBase;
 import com.automation.utilities.BrowserUtils;
 import org.openqa.selenium.By;
@@ -7,7 +6,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
@@ -15,12 +13,11 @@ import java.util.List;
 
 public class EventTab extends AbstractPageBase {
     @FindBy(xpath = "//*[@id='feed-add-post-form-tab-calendar']/span")
-//"//span[text()='Event']")
     private WebElement eventModule;
     @FindBy(id = "bx-b-uploadfile-blogPostForm_calendar")
     private WebElement uploadFileIcon;
     @FindBy(id = "bx-b-link-blogPostForm_calendar")
-    private WebElement uploadlinkIcon;
+    private WebElement attachedlinkIcon;
     @FindBy(id = "bx-b-link-blogPostForm_calendar")
     private WebElement uploadVideo;
     @FindBy(xpath = "(//tr/td/div[@class='diskuf-uploader'])[3]")
@@ -47,7 +44,12 @@ public class EventTab extends AbstractPageBase {
     private WebElement filenameFromBitrix24;
     @FindBy(css = "img[id^='disk-inline-image']")
     private WebElement image;
+    @FindBy(xpath ="//*[@placeholder='Link URL']")
+    private WebElement urlPlaceHolder;
+    @FindBy(xpath ="//placeholder='YouTube or Vimeo video URL']")
+    private WebElement videourlPlaceHolder;
 
+//placeholder="YouTube or Vimeo video URL"
     ////this method will usd for uploading file from File yor computer
     public void uploadFileMethod() throws Exception {
         wait.until(ExpectedConditions.elementToBeClickable(eventModule));
@@ -169,4 +171,30 @@ public class EventTab extends AbstractPageBase {
 
     public void clickOnImage(){
         image.click();
-    }}
+    }//user should able to click linc icon to attach link
+    public void clickLinkIcon(){
+        attachedlinkIcon.click();
+    }
+    public void attachUrlLink(String uRl) throws Exception{
+        Robot r = new Robot();
+        StringSelection strS = new StringSelection(uRl);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strS, null);
+        BrowserUtils.wait(3);
+        r.keyPress(KeyEvent.VK_CONTROL);
+        r.keyPress(KeyEvent.VK_V);
+        r.keyRelease(KeyEvent.VK_CONTROL);
+        r.keyRelease(KeyEvent.VK_V);
+        BrowserUtils.wait(3);
+        r.keyPress(KeyEvent.VK_ENTER);
+        r.keyRelease(KeyEvent.VK_ENTER);
+        BrowserUtils.wait(3);
+
+
+   // urlPlaceHolder.sendKeys(uRl, Keys.ENTER);
+
+    }
+    public String attachedLinkName(String url){
+
+      return  driver.findElement(By.xpath("//*[text()='"+url+"']")).getText();
+    }
+}
