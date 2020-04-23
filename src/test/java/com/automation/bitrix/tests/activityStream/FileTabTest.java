@@ -2,7 +2,6 @@ package com.automation.bitrix.tests.activityStream;
 
 import com.automation.bitrix.pages.LoginPage;
 import com.automation.bitrix.pages.activityStream.FileTab;
-import com.automation.bitrix.tests.AbstractTestBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

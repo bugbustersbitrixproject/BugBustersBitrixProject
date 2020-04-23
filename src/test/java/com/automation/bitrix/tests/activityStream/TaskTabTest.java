@@ -1,7 +1,6 @@
 package com.automation.bitrix.tests.activityStream;
 
 import com.automation.bitrix.pages.LoginPage;
-import com.automation.bitrix.tests.AbstractTestBase;
 import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.Driver;
 import org.openqa.selenium.By;

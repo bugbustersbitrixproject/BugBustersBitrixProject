@@ -2,7 +2,6 @@ package com.automation.bitrix.tests.activityStream;
 
 import com.automation.bitrix.pages.LoginPage;
 import com.automation.bitrix.pages.activityStream.FilterAndSearchFunctionality;
-import com.automation.bitrix.tests.AbstractTestBase;
 import com.automation.utilities.BrowserUtils;
 import org.testng.annotations.Test;
 
