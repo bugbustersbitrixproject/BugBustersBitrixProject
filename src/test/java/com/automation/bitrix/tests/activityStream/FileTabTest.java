@@ -14,11 +14,11 @@ public class FileTabTest extends AbstractTestBase {
         test = report.createTest("Uploading File");
 
         LoginPage loginPage = new LoginPage();
-        loginPage.loginAs("marketing1");
+        loginPage.loginAs("marketing2");
         test.info("Login successfully");
 
         FileTab fileTab = new FileTab();
-        fileTab.navigateToTab("File");
+        //fileTab.navigateToTab("File");
         test.info("Navigated to File tab");
 
         fileTab.uploadFile("diary.txt", "teamlogo.jpg");

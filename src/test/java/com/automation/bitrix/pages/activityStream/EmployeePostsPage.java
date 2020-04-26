@@ -46,7 +46,7 @@ public class EmployeePostsPage extends AbstractPageBase {
 
 
     @FindBy(css = "span[id^='log_entry_follow']")
-   // @FindBy(linkText = "Unfollow")
+    // @FindBy(linkText = "Unfollow")
     private WebElement followUnFollow;
 
 
@@ -63,8 +63,8 @@ public class EmployeePostsPage extends AbstractPageBase {
     }
 
     public int randomNumber(){
-         Random random=new Random();
-         return random.nextInt(likes.size());
+        Random random=new Random();
+        return random.nextInt(likes.size());
 
     }
 
@@ -85,7 +85,7 @@ public class EmployeePostsPage extends AbstractPageBase {
 
     public void clickUnFollow(){
 
-       followUnFollow.click();
+        followUnFollow.click();
     }
 
     public String getTextFollowUnFollowResult(){

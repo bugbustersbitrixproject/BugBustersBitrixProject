@@ -76,6 +76,13 @@ public abstract class AbstractPageBase {
             tab.click();
         }
     }
+    
+    //in order to get SubTitle of modules below Activity Stream
+    public String getModuleSubTitle(){
+        WebElement subtitle=driver.findElement(By.id("pagetitle"));
+    return  wait.until(ExpectedConditions.visibilityOf(subtitle)).getText();
+    }
+
 }
 
 
